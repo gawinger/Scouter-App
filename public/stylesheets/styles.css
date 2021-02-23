@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #ebebeb;
+}
+
+.nav-style {
+  background-color: #386641 !important;
+}
+
+.footer-style {
+  background-color: #386641 !important;
+  color: rgb(168, 166, 166);
+}
+
+#map {
+  width: 100%;
+  height: 500px;
+}
+
+.spots-add-btn {
+  font-weight: 600;
+  color: #6a994e;
+  background: none;
+  border: none;
+}
+
+.spots-add-btn:hover {
+  color: #52773d;
+}
+
+.spots-add-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.spots-text {
+  font-family: "Architects Daughter", cursive;
+  font-weight: 700;
+}
+
+.regular-text {
+  font-family: "Roboto", sans-serif;
+}
+
+.rating {
+  transform: scale(0.7);
+}
+
+.rating-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn,
+.btn-success {
+  background-color: #6a994e;
+  border-color: #6a994e;
+}
+
+.btn:hover,
+.btn-success:hover {
+  background-color: #386641;
+  border-color: #386641;
+}
+
+.show-spot-container {
+  height: auto !important;
+}
+
+.spots-card {
+  transition: transform 1s;
+}
+
+.spots-card:hover {
+  transform: scale(1.05);
+}
+
+.show-btn {
+  width: 200px;
+}
+
+.show-img {
+  object-fit: cover;
+  height: 450px;
+}
+
+.show-edit-btn {
+  background-color: #b4a72d;
+  border-color: #b4a72d;
+}
+
+.show-delete-btn {
+  background-color: #ad3e2a;
+  border-color: #ad3e2a;
+}
+
+.edit-back {
+  text-decoration: none;
+  font-family: "Architects Daughter", cursive;
+  color: #386641;
+  font-size: 1.5rem;
+}
+
+.edit-photo-container {
+  height: 10%;
+  overflow: hidden;
+}
+
+.photo-edit {
+  object-fit: cover;
+  height: 25vh !important;
+  width: 100%;
+}
+
+.add-images {
+  color: #ebebeb;
+}
+
+.card-title {
+  color: #6a994e;
+}
+
+.rating {
+  transform: scale(0.7);
+}
+
+.rating-container {
+  position: absolute;
+  top: 15px;
+}
+
+.login-container {
+  width: 50%;
+  margin: auto;
+  font-size: 1.2em;
+  margin-top: 15vh;
+}
+
+.login-container .btn {
+  width: 150px;
+  font-size: 1.2em;
+}
+
+.register-container {
+  margin-top: 10vh;
+}
+
+.new-container {
+  width: 80%;
+  margin: auto;
+}
+
+.new-container .btn {
+  width: 150px;
+  font-size: 1.2em;
+}
+
+.register button {
+  font-family: "Architects Daughter", cursive;
+  font-weight: 700;
+  color: #386641;
+  background: none;
+  border: none;
+  font-size: 2rem;
+}
+
+.register button:hover {
+  color: #6da54d;
+}
+
+.register button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+#search-button:hover {
+  background-color: #2c5334 !important;
+  border: 1px solid #2c5334;
+}
+
+.footer-link {
+  color: #ebebeb;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #6da54d;
+}
+
+@media (max-width: 768px) {
+  #map {
+    height: 68vh;
+  }
+
+  .login-container {
+    width: 80%;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
+  }
+
+  .register-container {
+    margin-top: 5vh;
+  }
+
+  .show-map {
+    width: 100% !important;
+    height: 30vh !important;
+  }
+
+  .show-h2 {
+    font-size: 1.5rem;
+  }
+
+  .show-h3 {
+    font-size: 1.2rem;
+  }
+
+  .show-btn {
+    width: 120%;
+  }
+
+  .show-img {
+    height: 30vh;
+  }
+}
+
+@media (max-width: 992px) {
+  .show-img {
+    height: 40vh;
+  }
+
+  #map {
+    width: 100%;
+    overflow: hidden;
+  }
+}

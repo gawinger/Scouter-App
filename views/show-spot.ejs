@@ -1,0 +1,140 @@
+<% layout('./layouts/boilerplate.ejs') %>
+<link rel="stylesheet" href="/stylesheets/starability.css" />
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
+<link rel="stylesheet" href="/stylesheets/styles.css">
+<script>
+  const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
+  const spot = <%- JSON.stringify(spot) %>
+</script>
+
+<div class="row mb-4 ">
+  <div class="col-lg-6 p-0">
+    <div class="card border-0 border-lg-1">
+    <div id="show-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <% if(spot.images.length) {%>
+            <img src="<%=spot.images[0].url%>" class="show-img d-block w-100" alt="Spot Image" />
+          <% } else { %>
+            <img src="/photos/photo-placeholder.png" class="show-img d-block w-100" alt="Spot Image" />
+          <% }%>
+        </div>
+        <% for(let i=1; i<spot.images.length; i++){ %>
+          <div class="carousel-item">
+            <img src="<%=spot.images[i].url%>" class="show-img d-block w-100" alt="Spot Image" />
+          </div>
+        <% } %>
+      </div>
+      <% if(spot.images.length > 1){ %> 
+        <a class="carousel-control-prev" href="#show-carousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#show-carousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </a>
+      <% } %> 
+    </div>
+
+    <div class="m-3">
+      <h2 class="show-h2"><%= spot.title %></h2>
+      <h3 class="text-muted show-h3"><%= spot.location %></h3>
+      <div>
+        <p class="starability-result m-0 float-start" data-rating="<%= spot.rating %>">Rated: <%= spot.rating %> stars</p><span class=" ms-1 fs-5">(<%= spot.rateNumber %>)</span>
+        <h6 class="text-muted text-end">Suggested by <%= spot.createdBy.username %></h6>
+      </div>
+    </div>
+    <div class="m-3">
+      <p><%= spot.description %></p>
+ 
+      <% if(currentUser && currentUser.email === '5575040@gmail.com' || currentUser && spot.createdBy.equals(currentUser._id)) {%>
+        <div class="d-flex">
+          <a href="/spots/<%= spot.id %>/edit" class="btn btn-primary me-2 show-edit-btn">Edit spot</a>
+          <a href="/spots/<%= spot.id %>/edit/photos" class="btn btn-primary me-2 show-edit-btn">Manage photos</a>
+          <form action="/spots/<%= spot.id %>?_method=DELETE" class="ms-auto " method="POST">
+            <button class="btn btn-danger show-delete-btn">Delete</button>
+          </form>
+          
+        </div>
+      <% } %>
+    </div>
+  </div>
+  </div>
+
+
+  <div class="pd-3 mt-5 mt-lg-0 col-lg-6 ">
+    <div id='map' class= "w-90 m-lg-3 p-lg-3 pt-lg-0 mt-lg-0" style='height: 300px;'>
+    </div>
+    <% let alreadyReviewed; if(currentUser){alreadyReviewed = spot.reviews.find(rev => rev.createdBy._id.toString() == currentUser._id.toString())}
+    if(currentUser && alreadyReviewed){ %>
+      <form action="/spots/<%= spot.id %>/reviews/<%= alreadyReviewed.id %>?_method=PUT" method="POST" class="p-3 pt-0 m-0 m-lg-3 mt-3 mt-lg-0 needs-validation bg-light show-addreview" novalidate>
+     <% } else { %>
+      <form action="/spots/<%= spot.id %>/reviews" method="POST" class="p-3 pt-0 m-0 m-lg-3 mt-3 mt-lg-0 needs-validation bg-light show-addreview" novalidate>
+     <% } %>
+      <div class="mb-0">
+        <h4 class="pt-3">Tell Everyone Something About This Place</h3>
+        <fieldset class="starability-basic mb-0">
+          <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+          <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+          <label for="first-rate1" title="Terrible">1 star</label>
+          <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+          <label for="first-rate2" title="Not good">2 stars</label>
+          <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+          <label for="first-rate3" title="Average">3 stars</label>
+          <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+          <label for="first-rate4" title="Very good">4 stars</label>
+          <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+          <label for="first-rate5" title="Amazing">5 stars</label>
+        </fieldset>
+      </div>
+      <div class="mb-2 mt-3">
+        <label class="form-label fs-4 mb-0" for="addReview">Leave a Review</label>
+        <textarea class="form-control" name="review[text]" id="addReview" cols="30" rows="2" required></textarea>
+      </div>
+      
+      <% if(currentUser && !alreadyReviewed) { %>
+        <button class="btn btn-primary">Add Opinion</button>
+      </form>
+      <% } else if (currentUser && alreadyReviewed){ %>
+        <button class="btn btn-primary">Edit Your Review</button>
+      </form> 
+      <% } else {%>
+      </form>
+        <div class="alert alert-warning text-center mt-3 mt-lg-0 mx-3">You must be logged in to add reviews</div>
+        <div class="container d-flex justify-content-around">
+          <a href="/login"><button class="btn btn-success show-btn">Log in</button></a>
+          <a href="/register"><button class="btn btn-success show-btn">Register</button></a>
+        </div>
+      <% }%>
+    
+    <div class="mb-3">
+      <% spot.reviews.forEach((rev)=>{ %>
+      <div class="m-3 card">
+        <div class="mx-3 card-body">
+          <div class="row">
+            <p class="mb-1 fw-bold fs-5 fs-lg-4 text-muted"><%= rev.createdBy.username %></p>
+            <div class="mb-1 fw-bold rating-container">
+              <p class="starability-result m-0 float-end rating" data-rating="<%= rev.rating %>">Rated: <%= rev.rating %> stars</p>
+            </div>
+          </div>
+          <% if(rev.text && rev.text != "") {%> 
+          <p class="mb-0 mt-2"><%= rev.text %></p>
+          <% } %>
+          <% if(currentUser && currentUser.email === '5575040@gmail.com' || currentUser && rev.createdBy._id.equals(currentUser._id)){ %>
+          <form action="/spots/<%= spot.id %>/reviews/<%= rev.id %>?_method=DELETE" method="POST">
+            <div class="position-relative">
+              <br />
+              <button class="btn btn-danger py-0 px-2 fs-4 position-absolute bottom-0 end-0 m-0"><i class="far fa-trash-alt"></i></button>
+            </div>
+          </form>
+          <% } %>
+        </div>
+      </div>
+      <% })%>
+    </div>
+  </div>
+</div>
+
+<script src="/scripts/showMap.js"></script>

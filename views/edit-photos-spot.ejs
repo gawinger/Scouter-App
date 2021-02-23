@@ -1,0 +1,26 @@
+<% layout('./layouts/boilerplate.ejs') %>
+
+<h1 class="mt-4 text-center spots-text">Edit Images</h1>
+<div class="col-lg-8 offset-lg-2 row">
+    <% spot.images.forEach((photo, i)=>{ %>
+        <div class="mb-3 col-6 col-md-4 edit-photo-container">
+          <form action="/spots/<%= spot.id %>/edit/photos?_method=DELETE" method="POST" class="needs-validation" >
+            <button class="btn btn-danger show-delete-btn" name="deletedImages[]" value="<%= photo.filename %>">Remove Image</button>
+          </form>
+          <img src="<%= photo.thumbnail %>" alt="spot-image" id=image<%=i%> class="img-thumbnail photo-edit"/>
+        </div>
+        <% }) %>
+    <div class="mb-3 row d-flex">
+      <form action="/spots/<%= spot.id %>/edit/photos?_method=PUT" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <div class="input-group">
+            <input type="file" class="form-control" id="addImage" name="spot[image]" multiple required>
+            <button class="btn btn-outline-success add-images">Add Images</button>
+        </div>
+      </form>
+      <div class="mt-4">
+        <a class="edit-back" href="/spots/<%= spot.id %> ">Go back</a>
+      </div>
+    </div>
+  </form>
+</div>
+

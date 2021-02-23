@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.spots-text {
+  font-family: "Architects Daughter", cursive;
+  font-weight: 700;
+}
+
+home-form {
+  background-color: rgb(184, 184, 184);
+  border-radius: 10px;
+}
+
+body {
+  color: #ebebeb;
+  background-image: url("/photos/home-bg.jpg");
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+main {
+  margin: 2.5vh 0;
+  height: 88vh;
+  overflow: hidden;
+}
+
+.home-container {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-section {
+  background-color: rgba(0, 0, 0, 0.664);
+}
+
+.nav-link {
+  color: #d4d4d4;
+  text-decoration: none;
+  font-size: 20px;
+  z-index: 100;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-background {
+  position: absolute;
+  background-color: #386641;
+  width: 100%;
+  height: 60px;
+  top: 0px;
+  left: 0px;
+}
+
+.nav-style {
+  background-color: #386641 !important;
+}
+
+header h3 {
+  color: #ebebeb;
+  z-index: 100;
+}
+
+.home-login {
+  width: 120px;
+}
+
+.logout {
+  margin-top: 5vh;
+}
+
+.home-button {
+  width: 160px;
+  background-color: #386641 !important;
+  border-color: #386641 !important;
+}
+
+.search-button {
+  background-color: #386641 !important;
+  border-color: #386641 !important;
+}
+
+.home-button:hover {
+  background-color: #6a994e !important;
+  border-color: #6a994e !important;
+}
+
+#home-carousel-img {
+  object-fit: cover;
+  height: 300px;
+  width: 100%;
+}
+
+.map-header {
+  height: 7%;
+}
+
+#map {
+  height: 73%;
+  width: 100%;
+}
+
+.under-map {
+  width: 100%;
+  height: 20%;
+}
+
+.under-map-header {
+  height: 20%;
+}
+
+.under-map-button {
+  display: flex;
+  height: 63%;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+@media (max-width: 992px) {
+  #home-carousel-img {
+    height: 35vh;
+  }
+  .home-container {
+    height: 80vh;
+    width: 90vw;
+  }
+
+  .home-section {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .home-container {
+    width: 90vw;
+  }
+  .home-section {
+    width: 90%;
+  }
+  .map-header {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 1400px) {
+  .map-header {
+    font-size: 1.5rem;
+  }
+}

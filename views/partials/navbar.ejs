@@ -1,0 +1,29 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark nav-style">
+  <div class="container-fluid mx-md-5">
+    <a class="navbar-brand" href="/"><h3 class="spots-text mb-0 me-4">Scouter</h3></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse fs-5 mt-4 mt-lg-0" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <form autocomplete="off" action="/" class="d-flex me-0 me-lg-3">
+          <div class="input-group">
+            <input name="q" class="form-control shadow-none" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-success shadow-none" id="search-button" type="submit"><i class="fas fa-search"></i></button>
+          </div>
+        </form>
+        <a class="nav-link px-3" aria-current="page" href="/">Home</a>
+        <a class="nav-link px-3" href="/spots">Spots</a>
+        <a class="nav-link px-3" href="/spots/new">New Spot</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <% if(!currentUser){%>
+        <a class="nav-link px-3" href="/login">Login</a>
+        <a class="nav-link px-3" href="/register">Sign Up</a>
+        <% } else { %>
+        <a class="nav-link px-3" href="/logout">Logout</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

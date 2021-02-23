@@ -1,0 +1,46 @@
+<% layout('./layouts/boilerplate.ejs') %>
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
+<link rel="stylesheet" href="/stylesheets/styles.css" />
+<link rel="stylesheet" href="/stylesheets/starability.css" />
+
+<div>
+  <h2 class="mt-md-3 mb-3 spots-text">
+    Scout Tourist Attractions on the map or <a href="/spots/new"><button class="spots-add-btn">Add new ones</button></a>
+  </h2>
+</div>
+<div id="map" class="mb-3"></div>
+
+<div class="row mt-5">
+  <h3 class="spots-text">You Can Also Find Something In Our List of Places</h3>
+  <% spots.forEach((spot)=>{ %>
+  <div class="col-sm-6 col-lg-4 col-xl-3 mt-4 mb-5">
+    <a href="spots/<%= spot.id %> ">
+      <div class="card mb-2 spots-card">
+        <div class="row">
+          <div class="col-7 col-sm-12">
+            <% if(spot.images.length) {%>
+            <img src="<%= spot.images[0].url %> " style="object-fit: cover; height: 230px; width: 100%" ; class="img-fluid" alt="Spot Image" />
+            <% } else { %>
+            <img src="/photos/photo-placeholder.png" style="object-fit: cover; height: 230px; width: 100%" class="img-fluid" alt="Spot Image" />
+            <% }%>
+          </div>
+          <div class="card-body col-5 col-sm-12 mx-lg-3">
+            <h5 class="card-title"><%= spot.title %></h5>
+            <p class="card-subtitle text-muted"><%= spot.location %></p>
+            <div class="rating-container">
+              <p class="card-text fw-bolder"><p class="starability-result m-0 float-start  rating" data-rating="<%= spot.rating %>">Rated: <%= spot.rating %> stars</p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <% })%>
+</div>
+
+<script>
+  const mapToken = "<%- process.env.MAPBOX_TOKEN %>";
+  const spots = {features: <%- JSON.stringify(spots) %>}
+</script>
+<script src="/scripts/clusterMap.js"></script>

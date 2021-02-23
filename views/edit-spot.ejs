@@ -1,0 +1,34 @@
+<% layout('./layouts/boilerplate.ejs') %>
+<h1 class="text-center spots-text">Edit Spot</h1>
+<div class="col-lg-8 offset-lg-2">
+  <form action="/spots/<%= spot.id %>?_method=PUT" method="POST" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label for="name" class="form-label">Place Name:</label>
+      <input type="text" id="name" class="form-control" name="spot[title]" value="<%= spot.title %>" required />
+      <div class="valid-feedback">Looks Good!</div>
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label">Location:</label>
+      <input type="text" class="form-control" name="spot[location]" id="location" value="<%= spot.location %>" required />
+      <div class="valid-feedback">Looks Good!</div>
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Address (Its optional, but will increase chances of correct placement on the map)</label>
+      <input type="text" name="spot[address]" class="form-control" id="address" />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea name="spot[description]" class="form-control" id="description" cols="30" rows="4" required><%= spot.description %></textarea>
+      <div class="valid-feedback">Looks Good!</div>
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Add Image (You do not have to add pictures if You do not want)</label>
+      <input type="file" multiple="multiple" name="spot[image]" class="form-control" id="image" />
+      <div class="valid-feedback">Looks Good!</div>
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary">Update Spot</button>
+    </div>
+  </form>
+  <a href="/spots/<%= spot.id %>" class="edit-back">Go back</a>
+</div>

@@ -1,0 +1,39 @@
+<% layout('./layouts/boilerplate.ejs') %>
+<div class="new-container">
+  <div class="card my-4">
+    <div class="card-body">
+      <h1 class="text-center spots-text">New Spot</h1>
+      <div class="col-lg-8 offset-lg-2">
+        <form action="/spots" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
+          <div class="mb-3">
+            <label for="name" class="form-label">Place Name:</label>
+            <input type="text" id="name" class="form-control" name="spot[title]" required />
+            <div class="valid-feedback">Looks Good!</div>
+          </div>
+          <div class="mb-3">
+            <label for="location" class="form-label">Location:</label>
+            <input type="text" class="form-control" name="spot[location]" id="location" required />
+            <div class="valid-feedback">Looks Good!</div>
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address (Its optional, but will increase chances of correct placement on the map)</label>
+            <input type="text" name="spot[address]" class="form-control" id="address" />
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="spot[description]" class="form-control" id="description" cols="30" rows="4" required></textarea>
+            <div class="valid-feedback">Looks Good!</div>
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Add Image (Optional, but it will look much better with pictures!)</label>
+            <input type="file" multiple="multiple" name="spot[image]" class="form-control" id="image" />
+            <div class="valid-feedback">Looks Good!</div>
+          </div>
+          <div class="mb-3 text-center">
+            <button class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
