@@ -1,9 +1,9 @@
 # Scouter-App
-Web application for visiting and exchanging information about tourist attractions.\ 
+Web application for visiting and exchanging information about tourist attractions.
 
 ## Technologies
 Project created with **javascript** and **bootstrap 5**.\
-App uses a **MongoDB** with **Mongoose** to store data about users, reviews and spots.\
+App uses a **MongoDB** with **Mongoose** to store data about users, reviews and spots.
 
 ## Functionality
 App allows logged in users to add new attractions and leave reviews and rate spots. Authentication is made with **passport.js**. \
